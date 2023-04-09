@@ -1,0 +1,19 @@
+.header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.tab {
+  cursor: pointer;
+  flex: 0 1 150px;
+  margin: 10px;
+  padding: 20px;
+  background-color: #eee;
+  text-align: center;
+}
+.tab:hover {
+  background-color: yellow;
+}
+
