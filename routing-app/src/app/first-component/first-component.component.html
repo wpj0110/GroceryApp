@@ -1,1 +1,5 @@
-<p>first component works!</p>
+<div *ngFor="let item of groceryItems">
+    <app-grocery-row
+        [groceryItem]="item"
+    ></app-grocery-row>
+</div>

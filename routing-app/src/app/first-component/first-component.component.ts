@@ -10,17 +10,16 @@ import { Observable, Subscription } from 'rxjs';
 })
 export class FirstComponentComponent implements OnInit, OnDestroy {
 
-  groceryItems: GroceryItem[];
-  grocerySubscription$: Subscription;
+  groceryItems: GroceryItem[] = [];
+  grocerySubscription$: Subscription = new Subscription;
   
   constructor(private groceryService: GroceryServiceService) {}
 
   ngOnInit() {
     this.grocerySubscription$ = this.groceryService.findAll().subscribe(data => {
-      //this.groceryItems = data;
-      console.log(data)
+      this.groceryItems = data;
     });
-    //console.log("this.groceryItems is: ", this.groceryItems);
+    
   }
 
   ngOnDestroy(): void {

@@ -4,4 +4,5 @@ export class GroceryItem {
   itemType: string;
   isEdible: boolean;
   itemPrice: number;
+
 }

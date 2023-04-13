@@ -1,0 +1,11 @@
+<div class = "groceryRows">
+    <div class = "groceryRow"> Current Quantity </div>
+    <button class = "groceryRow incrementDecrement" (click)="decrement()"> - </button>
+    <input class = "groceryInput" type="text" (input)="onInputChange($event)" maxlength="2" value="{{ itemAddRemoveCount }}">
+    <button class = "groceryRow incrementDecrement" (click)="increment()"> + </button>
+    <div class = "groceryRow">{{ groceryItem.itemName }} </div>
+    <div class = "groceryRow">{{ groceryItem.itemType }} </div>
+    <div class = "groceryRow">{{ groceryItem.itemPrice }} </div>
+    <button class = "groceryRow">Add To Cart</button>
+</div>
+
