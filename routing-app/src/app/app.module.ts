@@ -10,6 +10,7 @@ import { FirstComponentComponent } from './first-component/first-component.compo
 import { SecondComponentComponent } from './second-component/second-component.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { GroceryRowComponent } from './first-component/grocery-row/grocery-row.component';
+import { trueReducer } from './store/reducers/reducers';
 
 //import { groceryRowReducer } from './first-component/grocery-row/grocery-row.reducer';
 
@@ -26,6 +27,7 @@ import { GroceryRowComponent } from './first-component/grocery-row/grocery-row.c
     AppRoutingModule,
     MatRadioModule,
     StoreModule.forRoot({ 
+      reducer: trueReducer
     })
   ],
   providers: [],
