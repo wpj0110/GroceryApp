@@ -18,7 +18,8 @@ export class GroceryServiceService {
     return this.http.get<GroceryItem[]>(this.groceryUrl + '/items');
   }
 
+}
+
   // public save(item: GroceryItem) {
   //   return this.http.post<GroceryItem>(this.groceryUrl + '/items', item);
   // }
-}

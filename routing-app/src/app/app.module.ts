@@ -1,16 +1,16 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { MatRadioModule } from '@angular/material/radio'
 
 import { AppRoutingModule } from './app-routing.module';
-import { StoreModule } from '@ngrx/store';
+import { ActionReducerMap, StoreModule } from '@ngrx/store';
 
 import { AppComponent } from './app.component';
 import { FirstComponentComponent } from './first-component/first-component.component';
 import { SecondComponentComponent } from './second-component/second-component.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { GroceryRowComponent } from './first-component/grocery-row/grocery-row.component';
-import { trueReducer } from './store/reducers/reducers';
+import { myReducer } from './store/reducers/reducers';
+// import { trueReducer } from './store/reducers/reducers';
 
 //import { groceryRowReducer } from './first-component/grocery-row/grocery-row.reducer';
 
@@ -19,18 +19,15 @@ import { trueReducer } from './store/reducers/reducers';
     AppComponent,
     FirstComponentComponent,
     SecondComponentComponent,
-    CheckoutComponent,
-    GroceryRowComponent
+    GroceryRowComponent,
+    CheckoutComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    MatRadioModule,
-    StoreModule.forRoot({ 
-      reducer: trueReducer
-    })
+    StoreModule.forRoot(myReducer)
   ],
-  providers: [],
+  providers: [] ,
   bootstrap: [AppComponent]
 })
 export class AppModule { }

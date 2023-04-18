@@ -37,6 +37,10 @@ export class GroceryRowComponent {
   increment() {
     this.itemAddRemoveCount = Utils.incrementWholeNumber(this.itemAddRemoveCount);
   }
+
+  addToCart() {
+    console.log('hello');
+  }
 }
 
 
