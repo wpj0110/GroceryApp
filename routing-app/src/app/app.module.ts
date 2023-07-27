@@ -9,7 +9,7 @@ import { FirstComponentComponent } from './first-component/first-component.compo
 import { SecondComponentComponent } from './second-component/second-component.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { GroceryRowComponent } from './first-component/grocery-row/grocery-row.component';
-import { myReducer } from './store/reducers/reducers';
+import * as AllReducers from './store/reducers/reducers';
 // import { trueReducer } from './store/reducers/reducers';
 
 //import { groceryRowReducer } from './first-component/grocery-row/grocery-row.reducer';
@@ -25,7 +25,7 @@ import { myReducer } from './store/reducers/reducers';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    StoreModule.forRoot(myReducer)
+    StoreModule.forRoot(AllReducers.myReducer)
   ],
   providers: [] ,
   bootstrap: [AppComponent]

@@ -1,30 +1,46 @@
 import { GroceryItem } from "src/app/model/grocery-item";
-import { AddToCart, ActionTypes, InitializeItemState, ActionsUnion } from "../actions/actions";
-import {ActionReducer, Action, createSelector} from '@ngrx/store';
+import * as AllActions from "../actions/actions";
+import {ActionReducer, Action, createSelector, createReducer, on, State} from '@ngrx/store';
+
+
+//reference: https://v8.ngrx.io/guide/store/reducers//////////
+// export interface TestState {
+//   testItems: number;
+// }
+// export const testInitialState: TestState = {
+//   testItems: 0,
+// }
+
+// export function testDummyReducer(state: TestState = testInitialState, action: AllActions.ActionsUnion) {
+//   switch(action.type) {
+//     case 
+//   }
+//   on(AllActions.testAction, (state) => ({ ...state, testItems: state.testItems + 1})),
+// }
+
+// export function testReducer(state: TestState, action: Action) {
+//   return testDummyReducer(state, action);
+// }
+////////////////////////////////////////////////////////////////////////
 
 export interface GroceryState {
-  items?: GroceryItem[];
+  items: GroceryItem[];
 }
+
 
 export const initialState: GroceryState = {
-  items: []
+  items: [{itemId: -1, itemName: '', itemPrice: 0, itemType: ''}],
 }
 
-
-function isInitializeItemState(action: Action): action is InitializeItemState  {
-  return action && action.type === ActionTypes.INITIALIZE_ITEM_STATE;
+function isInitializeItemState(action: Action): action is AllActions.InitializeItemState  {
+  return action && action.type === AllActions.ActionTypes.INITIALIZE_ITEM_STATE;
 }
 
-export function myReducer(state = initialState, action: ActionsUnion) {
+export function myReducer(state:GroceryState = initialState, action: Action) {
+  console.log("reducer gets hit");
   switch(action.type) {
-    case ActionTypes.INITIALIZE_ITEM_STATE:
+    case AllActions.ActionTypes.INITIALIZE_ITEM_STATE:
       if(isInitializeItemState(action)) {
-        // return {
-        //   ...state,
-        //   state: action.payload.forEach(item => {
-        //     state.push(item)
-        //   })
-        // };
         return [...action.payload];
       }
       return state;
@@ -32,6 +48,12 @@ export function myReducer(state = initialState, action: ActionsUnion) {
       return state;
   }
 }
+
+export const selectGroceryState = (state: GroceryState)  => state;
+
+export const selectGroceryItems = createSelector(selectGroceryState, (state:GroceryState) => state.items)
+
+
 
 //export const getStateGroceryItems = createSelector(state, )
 

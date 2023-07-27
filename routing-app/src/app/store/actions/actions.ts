@@ -25,6 +25,8 @@ export class AddToCart implements Action {
     constructor(public payload: {itemId: number, cartCount: number}) {};
 }
 
+export const testAction = createAction('[TestAction] Just a Test', props<{item: number}>());
+
 export type ActionsUnion = 
 AddToCart|
 InitializeItemState;
