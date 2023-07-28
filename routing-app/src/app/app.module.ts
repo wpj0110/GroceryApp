@@ -10,7 +10,6 @@ import { SecondComponentComponent } from './second-component/second-component.co
 import { CheckoutComponent } from './checkout/checkout.component';
 import { GroceryRowComponent } from './first-component/grocery-row/grocery-row.component';
 import { EffectsModule } from '@ngrx/effects';
-import * as AllReducers from './state/store/reducers';
 // import { trueReducer } from './store/reducers/reducers';
 
 //import { groceryRowReducer } from './first-component/grocery-row/grocery-row.reducer';
@@ -28,7 +27,7 @@ import { GroceryEffects } from './state/store/effects';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    StoreModule.forRoot({GroceryReducer}),
+    StoreModule.forRoot({'app': GroceryReducer}),
     EffectsModule.forRoot([GroceryEffects])
   ],
   providers: [] ,

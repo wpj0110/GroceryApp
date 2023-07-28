@@ -1,9 +1,12 @@
-import { createSelector } from '@ngrx/store';
+import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { AppState } from '../app.state';
-import { GroceryState } from './reducers'; 
+import { GroceryState } from './reducers';
 
-export const selectTodos = (state: AppState) => state.groceryState;
+export const selectGroceryState = createFeatureSelector<GroceryState>('app')
 export const selectAllGroceryState = createSelector(
-  selectTodos,
-  (state: GroceryState) => state
+  selectGroceryState,
+  (state: GroceryState) => {
+    console.log('state is ',state);
+
+    return state}
 );

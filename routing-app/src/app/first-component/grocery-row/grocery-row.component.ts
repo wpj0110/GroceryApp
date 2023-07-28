@@ -10,7 +10,8 @@ import Utils from '../../helpers/utils'
 
 export class GroceryRowComponent {
 
-  @Input() groceryItem: GroceryItem;
+  @Input()
+  groceryItem!: GroceryItem;
 
   itemAddRemoveCount: number = 0; //todo: might check on store
 

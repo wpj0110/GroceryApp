@@ -3,10 +3,10 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import * as AllActions from "./actions";
 import { GroceryService } from "../../service/grocery-service.service"
 import { of, from } from 'rxjs';
-import { switchMap, map, catchError, withLatestFrom } from 'rxjs/operators';
+import { switchMap, map, catchError, withLatestFrom, tap } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
 import { selectAllGroceryState } from "./selectors";
-import { AppState } from ".";
+import { AppState } from '../app.state'; 
 
 @Injectable()
 export class GroceryEffects {
@@ -22,11 +22,25 @@ export class GroceryEffects {
             switchMap(() =>
                 from(this.groceryService.findAll()).pipe(
                     // Take the returned value and return a new success action containing the todos
-                    map((items) => AllActions.loadGrocerySuccess({ items: items})),
+                    map((items) => {
+                        console.log(items);
+                        return AllActions.loadGrocerySuccess({ items: items});}),
                     // Or... if it errors return a new failure action containing the error
                     catchError((error) => of(AllActions.loadGroceryFailure({ error })))
                 )
             )
         )
     );
+
+    yourActionSuccess$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(AllActions.loadGrocerySuccess), // Replace with your actual action type
+      tap(() => {
+        // This block of code will be executed when your action is triggered successfully
+        console.log('Your action was triggered successfully!');
+        // You can perform other side effects or actions here
+      }),
+      map(() => ({ type: '[Empty Action]' })) // You can dispatch another action after success if needed
+    )
+  );
 }
