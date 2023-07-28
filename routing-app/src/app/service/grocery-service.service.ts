@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class GroceryServiceService {
+export class GroceryService {
 
   private groceryUrl: string;
 

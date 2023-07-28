@@ -1,10 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { GroceryItem } from '../model/grocery-item';
-import { GroceryServiceService } from '../service/grocery-service.service';
+import { GroceryService } from '../service/grocery-service.service';
 import { Observable, Subscription } from 'rxjs';
 import { Store } from '@ngrx/store';
-import { InitializeItemState } from '../store/actions/actions';
-import { GroceryState, myReducer, selectGroceryItems } from '../store/reducers/reducers';
+import { loadGrocery } from '../state/store/actions';
+import { GroceryState} from '../state/store/reducers';
 
 @Component({
   selector: 'app-first-component',
@@ -17,7 +17,7 @@ export class FirstComponentComponent implements OnInit, OnDestroy {
   groceryItems$: Observable<GroceryItem[]>;
   grocerySubscription$: Subscription = new Subscription;
   
-  constructor(public store: Store<GroceryState>, public groceryService: GroceryServiceService) {
+  constructor(public store: Store<GroceryState>, public groceryService: GroceryService) {
     // this.groceryItems$ = store.select(myReducer).pipe(
     //   map(state => state.groceryItems)
     // );
@@ -28,12 +28,14 @@ export class FirstComponentComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.grocerySubscription$ = this.groceryService.findAll().subscribe(data => {
-      this.groceryItems = data;
-      this.store.dispatch(new InitializeItemState(this.groceryItems));
-      //this.store.select(selectGroceryItems).subscribe((items) => console.log(items));
-    });
-    //this.store.select(getStateGroceryItems)
+    // this.grocerySubscription$ = this.groceryService.findAll().subscribe(data => {
+    //   this.groceryItems = data;
+    //   this.store.dispatch(new InitializeItemState(this.groceryItems));
+    //   //this.store.select(selectGroceryItems).subscribe((items) => console.log(items));
+    // });
+    // //this.store.select(getStateGroceryItems)
+    console.log('hello');
+    this.store.dispatch(loadGrocery());
   }
 
   ngOnDestroy(): void {

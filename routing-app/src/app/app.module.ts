@@ -9,10 +9,13 @@ import { FirstComponentComponent } from './first-component/first-component.compo
 import { SecondComponentComponent } from './second-component/second-component.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { GroceryRowComponent } from './first-component/grocery-row/grocery-row.component';
-import * as AllReducers from './store/reducers/reducers';
+import { EffectsModule } from '@ngrx/effects';
+import * as AllReducers from './state/store/reducers';
 // import { trueReducer } from './store/reducers/reducers';
 
 //import { groceryRowReducer } from './first-component/grocery-row/grocery-row.reducer';
+import { GroceryReducer } from './state/store/reducers';
+import { GroceryEffects } from './state/store/effects';
 
 @NgModule({
   declarations: [
@@ -25,7 +28,8 @@ import * as AllReducers from './store/reducers/reducers';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    StoreModule.forRoot(AllReducers.myReducer)
+    StoreModule.forRoot({GroceryReducer}),
+    EffectsModule.forRoot([GroceryEffects])
   ],
   providers: [] ,
   bootstrap: [AppComponent]
