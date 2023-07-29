@@ -1,6 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { GroceryItem } from 'src/app/model/grocery-item';
 import Utils from '../../helpers/utils'
+import { Store } from '@ngrx/store';
+import { addToCart } from 'src/app/state/store/actions';
 
 @Component({
   selector: 'app-grocery-row',
@@ -14,6 +16,9 @@ export class GroceryRowComponent {
   groceryItem!: GroceryItem;
 
   itemAddRemoveCount: number = 0; //todo: might check on store
+
+  constructor(public store: Store) {
+  };
 
   onInputChange(event: any) {
     let newValue = event.target.value.replace(/[^0-9]/g, ''); // use regex to remove non-numeric characters
@@ -40,7 +45,10 @@ export class GroceryRowComponent {
   }
 
   addToCart() {
-    console.log('hello');
+    if (this.itemAddRemoveCount > 0) {
+      this.store.dispatch(addToCart({item: {itemId: this.groceryItem.itemId, cartCount: this.itemAddRemoveCount}}))
+      this.itemAddRemoveCount = 0;
+    }
   }
 }
 

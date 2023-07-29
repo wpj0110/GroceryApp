@@ -13,7 +13,7 @@ import { EffectsModule } from '@ngrx/effects';
 // import { trueReducer } from './store/reducers/reducers';
 
 //import { groceryRowReducer } from './first-component/grocery-row/grocery-row.reducer';
-import { GroceryReducer } from './state/store/reducers';
+import { GroceryReducer, UserReducer } from './state/store/reducers';
 import { GroceryEffects } from './state/store/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
@@ -28,7 +28,9 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    StoreModule.forRoot({'groceryState': GroceryReducer}),
+    StoreModule.forRoot({
+      'groceryState': GroceryReducer,
+      'userState': UserReducer}),
     EffectsModule.forRoot([GroceryEffects, ]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() })
   ],

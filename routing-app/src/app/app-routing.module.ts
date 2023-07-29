@@ -8,7 +8,8 @@ import { CheckoutComponent } from './checkout/checkout.component';
 const routes: Routes = [
   {path: 'main', component: FirstComponentComponent},
   {path: 'second', component: SecondComponentComponent},
-  {path: 'checkout', component: CheckoutComponent}
+  {path: 'checkout', component: CheckoutComponent},
+  { path: '**', redirectTo: '/main' } // Redirect to 'main' if the URL doesn't match any of the defined routes
 ];
 
 @NgModule({

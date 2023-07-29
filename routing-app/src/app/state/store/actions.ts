@@ -1,14 +1,11 @@
 import { createAction, props } from "@ngrx/store";
 import { GroceryItem } from "src/app/model/grocery-item";
+import { UserCart } from "src/app/model/user-cart";
 
-export const testAction = createAction(
-    '[Grocery Row] ADD_TO_CART', 
-    props<{item: number}>()
-);
 
 export const addToCart = createAction(
-    '[Grocery State] Add To Cart',
-    props<{item: GroceryItem}>()
+    '[UserState] Add To Cart',
+    props<{item: UserCart}>()
 )
 
 export const loadGrocery = createAction('[GroceryState] Load Grocery');

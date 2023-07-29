@@ -32,15 +32,15 @@ export class GroceryEffects {
         )
     );
 
-    yourActionSuccess$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(AllActions.loadGrocerySuccess), // Replace with your actual action type
-      tap(() => {
-        // This block of code will be executed when your action is triggered successfully
-        console.log('Your action was triggered successfully!');
-        // You can perform other side effects or actions here
-      }),
-      map(() => ({ type: '[Empty Action]' })) // You can dispatch another action after success if needed
-    )
-  );
+//     yourActionSuccess$ = createEffect(() =>
+//     this.actions$.pipe(
+//       ofType(AllActions.loadGrocerySuccess), // Replace with your actual action type
+//       tap(() => {
+//         // This block of code will be executed when your action is triggered successfully
+//         console.log('Your action was triggered successfully!');
+//         // You can perform other side effects or actions here
+//       }),
+//       map(() => ({ type: '[Empty Action]' })) // You can dispatch another action after success if needed
+//     )
+//   );
 }

@@ -4,5 +4,5 @@ export interface GroceryItem {
     itemType?: string;
     isEdible?: boolean;
     itemPrice?: number;
-    cartCount?: number;
+    cartCount: number;
 }
