@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -15,6 +15,7 @@ import { EffectsModule } from '@ngrx/effects';
 //import { groceryRowReducer } from './first-component/grocery-row/grocery-row.reducer';
 import { GroceryReducer } from './state/store/reducers';
 import { GroceryEffects } from './state/store/effects';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 @NgModule({
   declarations: [
@@ -27,8 +28,9 @@ import { GroceryEffects } from './state/store/effects';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    StoreModule.forRoot({'app': GroceryReducer}),
-    EffectsModule.forRoot([GroceryEffects])
+    StoreModule.forRoot({'groceryState': GroceryReducer}),
+    EffectsModule.forRoot([GroceryEffects, ]),
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() })
   ],
   providers: [] ,
   bootstrap: [AppComponent]
