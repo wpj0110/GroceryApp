@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { GroceryItem } from '../model/grocery-item';
 import { Store } from '@ngrx/store';
 import { loadGrocery } from '../state/store/actions';
-import { selectAllGroceryState } from '../state/store/selectors';
+import { selectAllGroceryState, selectGroceryItemMap } from '../state/store/selectors';
 import { Subject, take, takeUntil } from 'rxjs';
 
 @Component({
@@ -21,14 +21,9 @@ export class FirstComponentComponent implements OnInit, OnDestroy {
   
 
   ngOnInit() {
-    //this.store.dispatch(loadGrocery());
-    this.store.select(selectAllGroceryState).pipe(takeUntil(this.destroy$)).subscribe(groceryState => {
-      if(groceryState.items.length === 0) {
-        this.store.dispatch(loadGrocery());
-      } else {
-        this.groceryItems = groceryState.items;
-        console.log(this.groceryItems);
-      }
+    this.store.dispatch(loadGrocery());
+    this.store.select(selectGroceryItemMap).pipe(takeUntil(this.destroy$)).subscribe(groceryItemMap=> {
+      this.groceryItems = Array.from(groceryItemMap.values());;
     });
   }
 

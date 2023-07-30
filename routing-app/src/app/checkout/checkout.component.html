@@ -1,1 +1,5 @@
-<p>checkout works!</p>
+<div *ngFor="let cartItem of userCart">
+    <app-checkout-item-row
+    [checkoutItem]="getItem(cartItem)"
+    ></app-checkout-item-row>
+</div>

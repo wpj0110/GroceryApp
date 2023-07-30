@@ -16,6 +16,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { GroceryReducer, UserReducer } from './state/store/reducers';
 import { GroceryEffects } from './state/store/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { CheckoutItemRowComponent } from './checkout/checkout-item-row/checkout-item-row.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
     FirstComponentComponent,
     SecondComponentComponent,
     GroceryRowComponent,
-    CheckoutComponent
+    CheckoutComponent,
+    CheckoutItemRowComponent,
   ],
   imports: [
     BrowserModule,

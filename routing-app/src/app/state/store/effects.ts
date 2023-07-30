@@ -21,11 +21,9 @@ export class GroceryEffects {
         ofType(AllActions.loadGrocery),
             switchMap(() =>
                 from(this.groceryService.findAll()).pipe(
-                    // Take the returned value and return a new success action containing the todos
                     map((items) => {
                         console.log(items);
                         return AllActions.loadGrocerySuccess({ items: items});}),
-                    // Or... if it errors return a new failure action containing the error
                     catchError((error) => of(AllActions.loadGroceryFailure({ error })))
                 )
             )

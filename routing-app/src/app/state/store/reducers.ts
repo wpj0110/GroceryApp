@@ -2,30 +2,31 @@ import { GroceryItem } from "src/app/model/grocery-item";
 import * as AllActions from "./actions";
 import { createReducer, on } from '@ngrx/store';
 import { UserCart } from "src/app/model/user-cart";
+import { GroceryItemMap } from "src/app/model/grocery-item-map";
 
 export interface GroceryState {
-  items: GroceryItem[];
-  cart: GroceryItem[];
+  itemMap: GroceryItemMap;
   error: string;
-  status: 'pending' | 'loading' | 'error' | 'success';
+  status: string;
 };
 
 
 export const initialGroceryState: GroceryState = {
-  items: [],
-  cart: [],
+  itemMap: new Map<number,GroceryItem>(),
   error: '',
   status: 'pending'
 };
 
 export const GroceryReducer = createReducer(
   initialGroceryState,
-  on(AllActions.loadGrocerySuccess, (state, {items}) => ({
-    ...state, items: items, status: 'success'
-  })),
-  on(AllActions.loadGroceryFailure, (state, {error}) => ({
-    ...state, error: error, status: 'error'
-  }))
+  on(AllActions.loadGrocerySuccess, (state, {items}) => {
+    let tempMap: GroceryItemMap = new Map<number,GroceryItem>();
+    items.forEach(item => tempMap.set(item.itemId, item));
+    return {...state, itemMap: tempMap, status: 'success'}
+  }),
+  on(AllActions.loadGroceryFailure, (state, {error}) => {
+    return {...state, error: error, status: "error"};
+  })
 );
 
 export interface UserState {
